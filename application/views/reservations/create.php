@@ -4,48 +4,68 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open("reservations/create"); ?>
-
-<form method="post">
- <input type="hidden" name="idclient" value = '1' />
- <p>Date d'arrivé : <input type="date" name="arrive" /></p>
- <p>Date de départ : <input type="date" name="depart" /></p>
- <p>Nombres de personnes : <input type="number" name="nb" /></p>
- <p>
-    Lieu :
-        <select name="lieu">
-            <option value="Essonne">Essonne</option>
-            <option value="Isère">Isère</option>
-            <option value="Paris">Paris</option>
-            <option value="Seine et marne">Seine et marne</option>
-            <option value="Seine saint denis">Seine saint denis</option>
-            <option value="Val de marne">Val de marne</option>
-            <option value="Val d'oise">Val d'oise</option>
-            <option value="Yveline">Yveline</option>
-        </select>
- </p>
- <p>Ménage :
-    <br>
-    oui <input type="radio" name="men" value="1">
-    <br>
-    non <input type="radio" name="men" value="0">
- </p>
- <p>Type de chambre :
-     <br>
-    Logement <input type="radio" name="chambre" value="1">
-    <br>
-    Chambre double <input type="radio" name="chambre" value="2">
-    <br>
-    Chambre 3 lits <input type="radio" name="chambre" value="3">
-    <br>
-    chambre 4 lits <input type="radio" name="chambre" value="4">
-    <br>
-    Chambre hadicapé <input type="radio" name="chambre" value="5">
-    
- </p>
- 
- <p>
-    <input type="submit" value="Réserver"> 
-    
- </p>
-   
-</form>
+<div class="container">
+<div class="form-horizontal">
+    <fieldset>
+        <legend>Séjour</legend>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="dateArrivee">Date d'arrivée : </label>
+            <div class="col-sm-2">
+                <input type="date" name="arrive" id="dateArrivee" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="dateDepart">Date de départ : </label>
+            <div class="col-sm-2">
+                <input type="date" name="depart" id="dateDepart" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="nbPersonne"> Nombres de personnes : </label>
+            <div class="col-sm-2">
+                <input type="number" name="nb" id="nbPersonne" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="">Lieu : </label>
+            <div class="col-sm-2">
+                <select name="lieu" class="form-control">
+                    <option value="Essonne">Essonne</option>
+                    <option value="Isère">Isère</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Seine et marne">Seine et marne</option>
+                    <option value="Seine saint denis">Seine saint denis</option>
+                    <option value="Val de marne">Val de marne</option>
+                    <option value="Val d'oise">Val d'oise</option>
+                    <option value="Yveline">Yveline</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Menage : </label>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" name="men" value="1">Oui</label>
+                <label class="radio-inline"><input type="radio" name="men" value="0">Non</label>                
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="">Type de chambre : </label>
+            <div class="col-sm-10">
+                <label class="radio-inline"><input type="radio" name="chambre" value="1">Logement</label>
+                <label class="radio-inline"><input type="radio" name="chambre" value="2">Chambre double</label>
+                <label class="radio-inline"><input type="radio" name="chambre" value="3">Chambre 3 lits</label>
+                <label class="radio-inline"><input type="radio" name="chambre" value="4">Chambre 4 lits</label>
+                <label class="radio-inline"><input type="radio" name="chambre" value="5">Chambre hadicapé</label>
+            </div>
+        </div>
+        <?php echo $this->session->loginclient; ?>
+        <input type="hidden" name="idclient" value="<?php echo $this->session->idclient;?>">
+        <div class="form-group"> 
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-default">Réserver</button>
+            </div>
+        </div>
+    </div>
+    </fieldset>
+</form> 
+</div>

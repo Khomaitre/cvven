@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php echo validation_errors(); ?>
-<?php echo form_open('Connexion/formulaire'); ?>
+<?php echo form_open('User/connexion'); ?>
 
 Login:
 <label for='login'></label>

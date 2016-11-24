@@ -1,23 +1,23 @@
-<h1> <?php echo "$titre (Client n° $num )";?> </h1>
-<p> Liste des réservations</p>
+<h1> <?php echo "$titre";?> </h1>
+<p> Bonjour <?php echo "$loginclient"; ?> Voici vos réservations</p>
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open("reservations/afficher/"); echo $_SESSION['loginclient'];?>
+<?php echo form_open("reservations/afficher/");?>
 
-<table class="table table-hover">
+<table class="table table-hover table_reservation">
     <tr>
-    <td>num de réservation</td>
-    <td>date d'arrivée</td>
-    <td>date de fin</td>
-    <td>nombres de personnes</td>
-    <td>lieu</td>
-    <td>ménage</td>
-    <td>état de la réservation</td>
-    <td>num client</td>
-    <td>chambre</td>
-    <td>tarif</td>
-    <td>supprimer</td>
+    <th>num de réservation</th>
+    <th>date d'arrivée</th>
+    <th>date de fin</th>
+    <th>nombres de personnes</th>
+    <th>lieu</th>
+    <th>ménage</th>
+    <th>état de la réservation</th>
+    <th>num client</th>
+    <th>chambre</th>
+    <th>tarif</th>
+    <th>supprimer</th>
     </tr>
     
     <?php
@@ -31,11 +31,14 @@
                 echo "<td>". $row["lieusejour"] ."</td>";
                 if($row["menage"] == 1){
                     echo "<td> oui </td>";
-                }
-                else{
+                } else {
                     echo "<td> non </td>";
                 }
-                echo "<td>". $row["etatReserv"] ."</td>";
+                if ($row["etatReserv"] == "f") {
+                    echo "<td>En cours de validation</td>";
+                } else {
+                    echo "<td>Validé</td>";
+                }
                 echo "<td>". $row["idclient"] ."</td>";
                 echo "<td>". $row["idheb"] . "</td>";
                 echo "<td>". $row["tarifsejour"] . "</td>";
@@ -44,10 +47,10 @@
                 }
                 else{
                     
-                   echo "<form method ='post'>
+                   echo form_open("reservations/supprime") ."
                             <td>
-                                <input type='hidden' name='numsejour' value = '". $row["idsejour"] ."' />
-                                <input name = 'supp' type = 'submit' value='supprime' >
+                                <button type='submit' class='glyphicon glyphicon-remove'></button>
+                                <input type='hidden' name='numsejour' value = '". $row["idsejour"] ."'/>
                             </td>
                         </form>";
                 };
@@ -60,3 +63,5 @@
     
 </table>
 <br>
+
+<p>Créer une nouvelle réservation en cliquant <a href="<?php echo base_url("index.php/Reservations/create");?>">ici</a></p>

@@ -11,6 +11,7 @@ class Reservations extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Reservations_modele');
+        $this->load->model('User_modele');
         $this->load->library('session');
     }
     
@@ -25,9 +26,11 @@ class Reservations extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         
-        /* Données à transmettre à la vue */        
+        /* Données à transmettre à la vue */ 
+        $data['title'] = "Mes Réservations";      
         $data['titre']="Mes réservations";
         $data['num']=$numclient;
+        $data['loginclient'] = $this->User_modele->getClientLogin($numclient);
         $data['reservations'] = $this->Reservations_modele->get_client($numclient);
 
         $this->form_validation->set_rules('numsejour','numsejour','required');
@@ -56,7 +59,6 @@ class Reservations extends CI_Controller {
 
         $data['titre']="supprimé";
         $data['reservations'] = $this->Reservations_modele->get_reserv($numsejour);
-        $data['numclient'] = $this->db->
         $this->form_validation->set_rules('numsejour', "numsejour", 'required');
 
         if ($this->form_validation->run() === FALSE) {
@@ -78,8 +80,8 @@ class Reservations extends CI_Controller {
         $this->load->library('form_validation');
         
         $data['titre'] = "Créer une Réservation";
+        $data['title'] = "Réservez votre séjour dès maintenant !";
         
-        $this->form_validation->set_rules('idclient', "id du Client", 'required');
         $this->form_validation->set_rules('arrive', "Date d'arrivée", 'required');
         $this->form_validation->set_rules('depart', "Date de départ", 'required');
         $this->form_validation->set_rules('nb', 'Nombres de personnes', 'required');
@@ -96,9 +98,9 @@ class Reservations extends CI_Controller {
         }
         else
         {
-            $data['idclient'] = $this->input->post('idclient');
+            $idclient = $_SESSION['idclient'];
             $this->Reservations_modele->set_reserv();
-            redirect('reservations/afficher/'. $data['idclient']);
+            redirect('reservations/afficher/'. $idclient);
         }
        
     }

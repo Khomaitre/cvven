@@ -5,3 +5,10 @@ body{
 	background-color: grey;
 	width: 250px;
 }
+.table_reservation {
+	text-align: center;
+	text-transform: capitalize;
+}
+.table th {
+
+}

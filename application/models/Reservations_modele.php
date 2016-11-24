@@ -10,6 +10,8 @@ class Reservations_modele extends CI_Model {
 
     public function __construct() {
         $this->load->database();
+        $this->load->model('User_modele');
+        $this->load->library('session');
     }
     
     public function get_client($idClient){
@@ -30,7 +32,6 @@ class Reservations_modele extends CI_Model {
     public function set_reserv(){
         
         $this->load->helper('url');
-        
          $data = array(
             'idclient' => $this->input->post('idclient'),
             'datedebut' => $this->input->post('arrive'),

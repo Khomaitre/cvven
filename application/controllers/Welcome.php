@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		$data['titre']="CVVEN - Bienvenue sur l'accueil de notre site de réservations !";
+		$data['title']="CVVEN - Bienvenue sur l'accueil de notre site de réservations !";
 
         $this->load->view('templates/header', $data);
         $this->load->view('index.php');

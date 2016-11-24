@@ -1,8 +1,3 @@
-<?php 
-if (isset($_SESSION['loginclient'])) {
-	session_start();
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>   
@@ -14,7 +9,7 @@ if (isset($_SESSION['loginclient'])) {
 	    <meta name="author" content="Groupe1B">
 	    <link rel="icon" type="image/png" href="<?php echo base_url("application/assets/favicon.ico"); ?>" />
 
-	    <title> <?php echo $titre;?></title>
+	    <title> <?php echo $title;?></title>
 	    
 	    <!-- Bootstrap core CSS -->
 	    <link href="<?php echo base_url("application/assets/css/bootstrap.min.css"); ?>" rel="stylesheet">

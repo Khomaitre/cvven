@@ -16,7 +16,7 @@ class FormulaireUtilisateur extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         
-        $data['titre']="Inscription";
+        $data['title']="Inscription";
         
        $this->form_validation->set_rules('nomclient','nomclient','required');
        $this->form_validation->set_rules('prenomclient','prenomclient','required');
